@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="ble.js">
+    </script>
+
+    <style>
+    .textbox{width: 400px}
+    </style>
+
+    <title>Golioth BLE Provisioning</title>
+  </head>
+  <body>
+    <h1>Golioth Provisioning</h1>
+
+    <h2>Connect to Device</h2>
+
+    <button onClick='connect()'>connect</button>
+    <button onClick='disconnect()'>disconnect</button>
+    <input type="checkbox" id="autoreconnect">
+    <label>Auto-Reconnect</label>
+    <br><br>
+
+    <label>Device Name:</label>
+    <label id="devname"></label>
+    <br>
+    <label>Device ID:</label>
+    <label id="devid"></label>
+    <br>
+    <label>Connected:</label>
+    <label id="devconnected">No</label>
+    <br>
+    <label>Status:</label>
+    <label id="status-label"></label>
+    <br>
+    <br>
+
+    <h2>Read/Write Credentials</h2>
+
+    <label>WiFi SSID:</label><br>
+    <input class='textbox' type="text" id="wifissid">
+    <button onClick='readWifiSsid()'>Read</button>
+    <button onClick='writeWifiSsid()'>Write</button>
+    <br><br>
+
+    <label>WiFi Password:</label><br>
+    <input class='textbox' type="text" id="wifipassword">
+    <button onClick='readWifiPassword()'>Read</button>
+    <button onClick='writeWifiPassword()'>Write</button>
+    <br><br>
+
+    <label>Golioth PSK ID:</label><br>
+    <input class='textbox' type="text" id="goliothpskid">
+    <button onClick='readGoliothPskId()'>Read</button>
+    <button onClick='writeGoliothPskId()'>Write</button>
+    <br><br>
+
+    <label>Golioth PSK:</label><br>
+    <input class='textbox' type="text" id="goliothpsk">
+    <button onClick='readGoliothPsk()'>Read</button>
+    <button onClick='writeGoliothPsk()'>Write</button>
+    <br><br>
+
+  </body>
+</html>

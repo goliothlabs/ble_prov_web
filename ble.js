@@ -67,40 +67,37 @@ function disconnect() {
     }
 }
 
-function read(uuid, input) {
+async function read(uuid, input) {
     if (!myService) {
         return;
     }
-    myService.getCharacteristic(uuid)
-    .then(characteristic => {
-        return characteristic.readValue();
-    })
-    .then(value => {
+
+    try {
+        const chr = await myService.getCharacteristic(uuid);
+        const value = await chr.readValue();
         const decoder = new TextDecoder('utf-8');
         const readvalue = decoder.decode(value);
         if (input) {
             input.value = readvalue;
         }
-    })
-    .catch(function(error) {
-        msg('read failed!', error);
-    });
+    } catch(error) {
+        msg('Read failed:' + error);
+    }
 }
 
-function write(uuid, input) {
+async function write(uuid, input) {
     if (!myService) {
         return;
     }
 
-    myService.getCharacteristic(uuid)
-    .then(characteristic => {
+    try {
+        const chr = await myService.getCharacteristic(uuid);
         const newval = input.value;
         const encoder = new TextEncoder('utf-8');
-        return characteristic.writeValue(encoder.encode(newval));
-    })
-    .catch(function(error) {
-        msg('write failed!', error);
-    });
+        return chr.writeValue(encoder.encode(newval));
+    } catch(error) {
+        msg('Read failed:' + error);
+    }
 }
 
 function readWifiSsid() {
